@@ -19,13 +19,15 @@ void clreol(void);
 void gotoxy(int x, int y);
 
 TMemory TLink::mem;
+
 int LinkCount = 180;
 
 int main() {
 	TLink::InitMem(LinkCount);
+	//TLink::PrintFree();
 	TText text;
 	TLink tmp;
-
+	
 	char s;
 	char buf[80];
 	bool flag = false;
@@ -52,7 +54,7 @@ int main() {
 		cout << s << endl;
 
 		switch (s) {
-		case TAB: cout << "r - read\np - print\ns - save\nc - clear console \nDEL - clear memory\n" <<
+		case TAB: cout << "r - read\np - print\ns - save\nc - clear console \nf - print free\nDEL - clear memory\n" <<
 			"^ - go to previous link\n< - go to first link\nv - go to next link\n> - go to down link\n1 - insert next line\n2 - insert next section\n" <<
 			"3 - insert down line\n4 - insert down section\n5 - delete next link\n6 - delete down link\n"; break;
 		case 'r': text.Read("file.txt");
@@ -64,6 +66,7 @@ int main() {
 		case DEL: if (flag) { TLink::MemCleaner(text); flag = false; cout << "Memory was cleared\n"; }
 				  else cout << "There is nothing to clear\n"; break;
 		case 's': text.Write("file2.txt"); break;
+		case 'f': TLink::PrintFree(); break;
 		case ESC: if (flag) { TLink::MemCleaner(text); } return 0;
 		case UP : text.GoPrevLink(); text.Print(); break;
 		case DOWN: text.GoNextLink(); text.Print(); break;

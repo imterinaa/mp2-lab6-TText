@@ -10,7 +10,18 @@ TLink::TLink(char* _str, TLink* pN, TLink* pD) {
 		strncpy_s(str, _str, 80);
 }
 
+void TLink::PrintFree() {
 
+	cout << "free links" << endl;
+	int count = 0;
+	for (TLink* pLink = mem.pFree; pLink != NULL; pLink = pLink->pNext) {
+		if (pLink->str[0] != '\0') {
+			cout << pLink->str << std::endl;
+		}
+		count++;
+	}
+	cout << count << std::endl;
+}
 
 void* TLink::operator new(size_t s) {
 	TLink* tmp = mem.pFree;
