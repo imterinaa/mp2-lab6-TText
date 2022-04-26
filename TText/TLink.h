@@ -19,7 +19,7 @@ public:
 
 	void* operator new(size_t s);
 	void operator delete(void* p);
-
+	static void PrintFree();
 	static void InitMem(size_t s);
 	static void MemCleaner(TText& txt);
 
